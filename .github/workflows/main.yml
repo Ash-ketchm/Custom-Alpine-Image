@@ -1,6 +1,6 @@
 ### contributors: Ash,AKPR
 
-name: Alpine VM Image Build
+name: Alpine ( stable )
 on:
   workflow_dispatch:
 
