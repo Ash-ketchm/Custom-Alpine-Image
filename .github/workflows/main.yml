@@ -1,23 +1,25 @@
-name: Ci (alpine)
+### contributors: Ash,AKPR
+
+name: Alpine VM Image Build
 on:
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Install Required Packages
+      - uses: actions/checkout@v2
+
+      - name: Install and Setup Essentials
         run: |
           sudo apt-get update
           sudo apt-get install qemu-utils wget -y; cd ~/ ;wget https://raw.githubusercontent.com/alpinelinux/alpine-make-vm-image/v0.9.0/alpine-make-vm-image
-          sudo useradd -s /usr/bin/bash -m ash && sudo adduser ash sudo && echo 'ash:ash' | sudo chpasswd
+          sudo useradd -s /usr/bin/bash -m worker && sudo adduser worker sudo && echo 'worker:worker' | sudo chpasswd
           sudo bash
-          sudo su ash
+          sudo su worker
           cd ~/
 
-      - uses: actions/checkout@v2
-
-      - name: Build image
+      - name: Build Alpine VM Image
         run: |
           sudo bash ~/alpine-make-vm-image \
               --image-format qcow2 \
