@@ -1,0 +1,8 @@
+chrony
+less
+logrotate
+openssh
+ssmtp
+sudo
+qemu-img
+qemu-system-x86_64
