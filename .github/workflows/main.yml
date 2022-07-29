@@ -1,14 +1,6 @@
 name: Ci (alpine)
 on:
   workflow_dispatch:
-    inputs:
-      sshPublicKey:
-        description: 'SSH public key'
-        required: flase
-      exitCode:
-        description: 'When set to non-zero, a step will fail causing the SSH server to be started'
-        required: flase
-        default: "0"
 
 jobs:
   build:
