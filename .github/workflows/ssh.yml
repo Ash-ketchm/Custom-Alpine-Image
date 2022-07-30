@@ -1,6 +1,10 @@
 name: ssh
 on:
   workflow_dispatch:
+    inputs:
+      sshPublicKey:
+        description: 'SSH public key'
+        required: true
 
 jobs:
   build:
@@ -8,4 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Start ssh
-        uses: lhotari/action-upterm@v1
+        uses: mdelillo/ssh-server-action@v1.0.0
+        with:
+          ngrok-authtoken: "${{ secrets.NGROK_AUTHTOKEN }}"
+          ssh-public-key: "${{ github.event.inputs.sshPublicKey }}"
