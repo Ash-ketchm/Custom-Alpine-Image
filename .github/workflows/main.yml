@@ -25,12 +25,12 @@ jobs:
               --image-format qcow2 \
               --image-size 1024G \
               --branch 3.16 \
-              --kernel-flavor lts \
+              --kernel-flavor vanilla \
               --packages "$(cat example/packages)" \
               alpine-latest-stable.qcow2
 
       - name: Upload Alpine VM Image Build
         uses: actions/upload-artifact@v3
         with:
-          name: alpine-stable-img
+          name: alpine-stable-img.qcow2
           path: alpine-latest-stable.qcow2
